@@ -1,0 +1,29 @@
+{
+  "name": "jsdom-problem",
+  "version": "0.1.0",
+  "description": "Demonstration and experimentation for problem of JSDOM.",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node --experimental-modules index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@kit.github.com:kurone-kito/jsdom-problem.git"
+  },
+  "keywords": [
+    "bug",
+    "demo",
+    "experimentation",
+    "jsdom"
+  ],
+  "author": "kurone-kito",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.5.0"
+  },
+  "devDependencies": {
+    "jsdom": "^13.2.0"
+  },
+  "dependencies": {}
+}
