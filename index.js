@@ -1,22 +1,20 @@
-const fs = require('fs');
 const jsdom = require('jsdom');
 
-const dom = new jsdom.JSDOM(fs.readFileSync('./resource/index.html', 'utf8'));
-const { window } = dom;
+const { window } = new jsdom.JSDOM();
 const { document } = window;
 
-const test = file => {
-  const element = document.createElement('style');
-  element.setAttribute('type', 'text/css');
-  element.innerHTML = fs.readFileSync(file, 'utf8');
-  document.head.appendChild(element);
+const test = styles => {
+  const elm = document.createElement('style');
+  elm.setAttribute('type', 'text/css');
+  elm.innerHTML = styles;
+  document.head.appendChild(elm);
 
-  console.warn(`start: ${file}`);
-  console.log(window.getComputedStyle(document.body));
-  console.warn(`done: ${file}`);
+  console.log(`start compute... ${styles}`);
+  window.getComputedStyle(document.body); // here
+  console.log(`done.`);
 
-  document.head.removeChild(element);
+  document.head.removeChild(elm);
 }
 
-test('./resource/safe.css'); // Safe
-test('./resource/problem.css'); // Problem
+test('_:-ms-lang(x)::-ms-backdrop, u {}'); // No problem.
+test('p _:-ms-lang(x)::-ms-backdrop, u {}'); // Crash!
